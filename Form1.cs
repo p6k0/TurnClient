@@ -15,11 +15,13 @@ namespace TurnClient
         public Form1()
         {
             InitializeComponent();
-            for(int i = 0; i< 100; i++)
+            /*for(int i = 0; i< 100; i++)
             {
 
                 this.Controls.Add(new TurnCtrl.Turnstile_2000(new TurnCtrl.PassProperies(), toolTip1, true) { Left = 10+60*i, Top = 10 });
-            }
+            }*/
+
+
         }
 
     }

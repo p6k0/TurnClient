@@ -30,17 +30,29 @@
         {
             this.components = new System.ComponentModel.Container();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.turnLine1 = new TurnCtrl.TurnLine();
             this.SuspendLayout();
             // 
             // toolTip1
             // 
             this.toolTip1.IsBalloon = true;
             // 
+            // turnLine1
+            // 
+            this.turnLine1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
+            this.turnLine1.Location = new System.Drawing.Point(13, 13);
+            this.turnLine1.Margin = new System.Windows.Forms.Padding(4);
+            this.turnLine1.Name = "turnLine1";
+            this.turnLine1.Size = new System.Drawing.Size(90, 180);
+            this.turnLine1.TabIndex = 0;
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(823, 522);
+            this.ClientSize = new System.Drawing.Size(1097, 642);
+            this.Controls.Add(this.turnLine1);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.Text = "Form1";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -51,6 +63,7 @@
         #endregion
 
         private System.Windows.Forms.ToolTip toolTip1;
+        private TurnCtrl.TurnLine turnLine1;
     }
 }
 
