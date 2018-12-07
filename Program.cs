@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace TurnClient
 {
@@ -16,7 +14,20 @@ namespace TurnClient
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            XmlDocument cfg = new XmlDocument();
+            using (StartupForm f = new StartupForm())
+            {
+                switch (f.ShowDialog())
+                {
+                    case DialogResult.Yes:
+                        using (OpenFileDialog dlg = new OpenFileDialog())
+                            if (dlg.ShowDialog() == DialogResult.OK)
+                                cfg.Load(dlg.FileName);
+                        break;
+                }
+            }
+
+            Application.Run(new Form1(cfg));
         }
     }
 }
