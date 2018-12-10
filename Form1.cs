@@ -28,50 +28,48 @@ namespace TurnClient
                 TurnCtrl.LineGroup gr = station1.LineGroupAdd(lgpr, CanEdit);
                 foreach (XmlElement lnEl in grEl.SelectNodes("Line"))
                 {
-                    TurnCtrl.TurnLineProperties lnpr = new TurnCtrl.TurnLineProperties
+                    TurnLineProperties lnpr = new TurnCtrl.TurnLineProperties
                     {
                         Name = lnEl.GetAttribute("Name"),
                         Id = Convert.ToInt32(lnEl.GetAttribute("Id"))
                     };
-                    TurnCtrl.TurnLine ln = gr.addLine(lnpr, CanEdit);
+                    TurnLine ln = gr.addLine(lnpr, CanEdit);
                     XmlNodeList passList = lnEl.SelectNodes("Turn");
-                    TurnCtrl.RackProperties EmptyRack = null,prevRack=null;
+                    RackProperties prevRack = null;
                     for (int i = 0; i < passList.Count; i++)
                     {
                         XmlElement turnEl = (XmlElement)passList[i];
                         if (i == 0)
                         {
-                            EmptyRack = new TurnCtrl.RackProperties()
+                            prevRack = new TurnCtrl.RackProperties()
                             {
                                 InventoryNum = turnEl.GetAttribute("InvNum"),
                                 SerialNum = Convert.ToUInt64(turnEl.GetAttribute("SNum"))
-                            }; 
+                            };
                             continue;
                         };
-                        TurnCtrl.PassProperies turnpr = new TurnCtrl.PassProperies
+                        TurnCtrl.TurnstileProperty turnpr = new TurnCtrl.TurnstileProperty
                         {
-                            Id = Convert.ToInt32(turnEl.GetAttribute("Id"))-1,
-                            PassNum = Convert.ToInt32(turnEl.GetAttribute("PassNum")),
-                           // Address = Convert.ToInt32(turnEl.GetAttribute("Address")),
-                            Baggage = Convert.ToBoolean(turnEl.GetAttribute("Baggage")),
-                            Express = Convert.ToBoolean(turnEl.GetAttribute("Express")),
-                            InEnable = Convert.ToBoolean(turnEl.GetAttribute("InEnable")),
-                            OutEnable = Convert.ToBoolean(turnEl.GetAttribute("OutEnable")),
+                            OrderId = (byte)(Convert.ToByte(turnEl.GetAttribute("Id")) - 1),
+                            Pass = new PassProperty()
+                            {
+                                Number = Convert.ToByte(turnEl.GetAttribute("PassNum")),
+                                Addres = Convert.ToByte(turnEl.GetAttribute("Address")),
+                                Port = Convert.ToString(turnEl.GetAttribute("Port")),
+                                Baggage = Convert.ToBoolean(turnEl.GetAttribute("Baggage")),
+                                Express = Convert.ToBoolean(turnEl.GetAttribute("Express")),
+                                InEnable = Convert.ToBoolean(turnEl.GetAttribute("InEnable")),
+                                OutEnable = Convert.ToBoolean(turnEl.GetAttribute("OutEnable")),
+                            },
+
                             RightRack = new TurnCtrl.RackProperties
                             {
                                 InventoryNum = turnEl.GetAttribute("InvNum"),
                                 SerialNum = Convert.ToUInt64(turnEl.GetAttribute("SNum"))
                             }
-                            
+
                         };
-                        if (i == 1)
-                        {
-                            turnpr.LeftRack = EmptyRack;
-                        }
-                        else
-                        {
-                            turnpr.LeftRack = prevRack;
-                        }
+                        turnpr.LeftRack = prevRack;
 
                         ln.addTurnstile(turnpr, CanEdit);
                         prevRack = turnpr.RightRack;
@@ -112,12 +110,12 @@ namespace TurnClient
             doc.DocumentElement.SetAttribute("Name", StationNameTbx.Text);
             doc.DocumentElement.SetAttribute("LastModify", DateTime.Now.Ticks.ToString());
             doc.DocumentElement.SetAttribute("Ver", System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString());
-            foreach(LineGroup gr in station1.getGroups())
+            foreach (LineGroup gr in station1.getGroups())
             {
                 XmlElement grEl = doc.CreateElement("Group");
                 grEl.SetAttribute("Name", gr.Properties.Name);
                 grEl.SetAttribute("Id", gr.Properties.Id.ToString());
-                foreach( TurnLine ln in gr.getTurnLines())
+                foreach (TurnLine ln in gr.getTurnLines())
                 {
                     XmlElement lnEl = doc.CreateElement("Line");
                     lnEl.SetAttribute("Name", ln.Properties.Name);
@@ -129,19 +127,19 @@ namespace TurnClient
                     tEl.SetAttribute("SNum", t[0].Properties.LeftRack.SerialNum.ToString());
                     tEl.SetAttribute("InvNum", t[0].Properties.LeftRack.InventoryNum);
                     lnEl.AppendChild(tEl);
-                    foreach(Turnstile tt in t)
+                    foreach (Turnstile tt in t)
                     {
                         tEl = doc.CreateElement("Turn");
 
-                        tEl.SetAttribute("Id", (tt.Properties.Id+1).ToString());
+                        tEl.SetAttribute("Id", (tt.Properties.OrderId + 1).ToString());
 
-                        tEl.SetAttribute("PassNum", tt.Properties.PassNum.ToString());
-                        tEl.SetAttribute("InEnable", tt.Properties.InEnable.ToString());
-                        tEl.SetAttribute("OutEnable", tt.Properties.OutEnable.ToString());
-                        tEl.SetAttribute("Baggage", tt.Properties.Baggage.ToString());
-                        tEl.SetAttribute("Express", tt.Properties.Express.ToString());
-                        tEl.SetAttribute("Port", tt.Properties.Port.ToString());
-                        tEl.SetAttribute("Addr", tt.Properties.Address.ToString());
+                        tEl.SetAttribute("PassNum", tt.Properties.Pass.Number.ToString());
+                        tEl.SetAttribute("InEnable", tt.Properties.Pass.InEnable.ToString());
+                        tEl.SetAttribute("OutEnable", tt.Properties.Pass.OutEnable.ToString());
+                        tEl.SetAttribute("Baggage", tt.Properties.Pass.Baggage.ToString());
+                        tEl.SetAttribute("Express", tt.Properties.Pass.Express.ToString());
+                        tEl.SetAttribute("Port", tt.Properties.Pass.Port.ToString());
+                        tEl.SetAttribute("Addr", tt.Properties.Pass.Addres.ToString());
 
                         tEl.SetAttribute("SNum", tt.Properties.RightRack.SerialNum.ToString());
                         tEl.SetAttribute("InvNum", tt.Properties.RightRack.InventoryNum);
@@ -159,11 +157,10 @@ namespace TurnClient
 
             using (SaveFileDialog dlg = new SaveFileDialog())
             {
-                dlg.Filter = "Турникетный комплекс АСОКУПЭ(.atcfg) | *.atcfg";
-                dlg.FileName = StationNameTbx.Text + "_" + StationETbx.Text + ".atcfg";
-                if (dlg.ShowDialog()== DialogResult.OK)
+                dlg.Filter = "Турникетный комплекс АСОКУПЭ(.tmap) | *.tmap";
+                dlg.FileName = StationNameTbx.Text + "_" + StationETbx.Text + ".tmap";
+                if (dlg.ShowDialog() == DialogResult.OK)
                 {
-
                     doc.Save(dlg.FileName);
                 }
             }
