@@ -11,7 +11,7 @@ namespace TurnClient
         {
             InitializeComponent();
             this.Size = Screen.PrimaryScreen.WorkingArea.Size;
-            TurnCtrl.StationProperties prop = new TurnCtrl.StationProperties();
+            /*TurnCtrl.StationProperties prop = new TurnCtrl.StationProperties();
             prop.ExpressCode = Convert.ToInt32(cfg.DocumentElement.GetAttribute("E"));
             prop.Name = cfg.DocumentElement.GetAttribute("Name");
             station1.Properties = prop;
@@ -80,7 +80,7 @@ namespace TurnClient
             }
             station1.Compose();
 
-
+            */
 
             /*for(int i = 0; i< 100; i++)
             {
@@ -89,7 +89,7 @@ namespace TurnClient
             }*/
 
             //this.Controls.Add(new TurnCtrl.LineGroup(new TurnCtrl.LineGroupProperties(), true) { Width= 1900 });
-
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -134,12 +134,12 @@ namespace TurnClient
                         tEl.SetAttribute("Id", (tt.Properties.OrderId + 1).ToString());
 
                         tEl.SetAttribute("PassNum", tt.Properties.Pass.Number.ToString());
-                        tEl.SetAttribute("InEnable", tt.Properties.Pass.InEnable.ToString());
-                        tEl.SetAttribute("OutEnable", tt.Properties.Pass.OutEnable.ToString());
+                        tEl.SetAttribute("InEnable", tt.Properties.Wire.InEnable.ToString());
+                        tEl.SetAttribute("OutEnable", tt.Properties.Wire.OutEnable.ToString());
                         tEl.SetAttribute("Baggage", tt.Properties.Pass.Baggage.ToString());
                         tEl.SetAttribute("Express", tt.Properties.Pass.Express.ToString());
-                        tEl.SetAttribute("Port", tt.Properties.Pass.Port.ToString());
-                        tEl.SetAttribute("Addr", tt.Properties.Pass.Addres.ToString());
+                        tEl.SetAttribute("Port", tt.Properties.Wire.Port.ToString());
+                        tEl.SetAttribute("Addr", tt.Properties.Wire.Address.ToString());
 
                         tEl.SetAttribute("SNum", tt.Properties.RightRack.SerialNum.ToString());
                         tEl.SetAttribute("InvNum", tt.Properties.RightRack.InventoryNum);
