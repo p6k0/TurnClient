@@ -38,6 +38,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.station1 = new TurnCtrl.Station();
+            this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // toolTip1
@@ -72,7 +73,7 @@
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(261, 2);
+            this.label1.Location = new System.Drawing.Point(379, 2);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(100, 23);
             this.label1.TabIndex = 3;
@@ -82,7 +83,7 @@
             // 
             // StationNameTbx
             // 
-            this.StationNameTbx.Location = new System.Drawing.Point(367, 4);
+            this.StationNameTbx.Location = new System.Drawing.Point(485, 4);
             this.StationNameTbx.Name = "StationNameTbx";
             this.StationNameTbx.Size = new System.Drawing.Size(144, 20);
             this.StationNameTbx.TabIndex = 4;
@@ -90,14 +91,14 @@
             // 
             // StationETbx
             // 
-            this.StationETbx.Location = new System.Drawing.Point(623, 4);
+            this.StationETbx.Location = new System.Drawing.Point(741, 4);
             this.StationETbx.Name = "StationETbx";
             this.StationETbx.Size = new System.Drawing.Size(144, 20);
             this.StationETbx.TabIndex = 6;
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(517, 2);
+            this.label2.Location = new System.Drawing.Point(635, 2);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(100, 23);
             this.label2.TabIndex = 5;
@@ -109,7 +110,7 @@
             this.button3.FlatAppearance.BorderSize = 0;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button3.Location = new System.Drawing.Point(773, 1);
+            this.button3.Location = new System.Drawing.Point(891, 1);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(86, 25);
             this.button3.TabIndex = 7;
@@ -123,17 +124,30 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.station1.AutoScroll = true;
-            this.station1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.station1.Location = new System.Drawing.Point(2, 30);
+            this.station1.Location = new System.Drawing.Point(0, 30);
             this.station1.Margin = new System.Windows.Forms.Padding(0);
             this.station1.Name = "station1";
             this.station1.Size = new System.Drawing.Size(1146, 575);
             this.station1.TabIndex = 0;
             // 
+            // button2
+            // 
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button2.Location = new System.Drawing.Point(248, 0);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(141, 27);
+            this.button2.TabIndex = 8;
+            this.button2.Text = "Проверить";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
+            // 
             // Form1
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1146, 605);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.StationETbx);
             this.Controls.Add(this.label2);
@@ -163,6 +177,7 @@
         private System.Windows.Forms.TextBox StationETbx;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button2;
     }
 }
 

@@ -13,7 +13,7 @@ namespace TurnClient
             InitializeComponent();
             Size = Screen.PrimaryScreen.WorkingArea.Size;
             map = new AsokupeConfig(cfg);
-            
+            station1.Properties = new StationProperties();
             map.DrawMap(station1, true);
             this.Activate();
         }
@@ -30,7 +30,14 @@ namespace TurnClient
 
         private void button3_Click(object sender, EventArgs e)
         {
-
+            using (SaveFileDialog sfd = new SaveFileDialog())
+            {
+                sfd.Filter = "Конфигурация станции|*.atcfg";
+                sfd.FileName = station1.Properties.Name + "_" + station1.Properties.ExpressCode + ".atcfg";
+                sfd.OverwritePrompt = true;
+                if (sfd.ShowDialog() == DialogResult.OK)
+                    map.SaveMap(station1, sfd.FileName);
+            }
         }
 
 
@@ -47,6 +54,11 @@ namespace TurnClient
         private void Form1_Shown(object sender, EventArgs e)
         {
             this.Activate();
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            map.Validate();
         }
     }
 }
