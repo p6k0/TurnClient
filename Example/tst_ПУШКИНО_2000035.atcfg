@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Station Name="ПУШКИНО" E="2000035" Ver="1.0.0.1" LastModify="1544964266">
+  <Group Order="1" Name="Платформа №1 (в область)">
+    <Line Order="1" Name="Павильон" Type="ut2000">
+      <Turn Order="0" SN="0" IN="0" />
+      <Turn PassNum="31" Order="1" SN="0" IN="0" Baggage="0" Express="0" InEnable="1" OutEnable="1" Port="" Address="1" />
+      <Turn PassNum="31" Order="2" SN="0" IN="0" Baggage="0" Express="0" InEnable="1" OutEnable="1" Port="" Address="1" />
+      <Turn PassNum="33" Order="3" SN="0" IN="0" Baggage="0" Express="0" InEnable="1" OutEnable="1" Port="" Address="1" />
+      <Turn PassNum="34" Order="4" SN="0" IN="0" Baggage="0" Express="0" InEnable="1" OutEnable="1" Port="" Address="1" />
+      <Turn PassNum="35" Order="5" SN="0" IN="0" Baggage="0" Express="0" InEnable="1" OutEnable="1" Port="" Address="1" />
+      <Turn PassNum="36" Order="6" SN="0" IN="0" Baggage="0" Express="0" InEnable="1" OutEnable="1" Port="" Address="1" />
+      <Turn PassNum="37" Order="7" SN="0" IN="0" Baggage="0" Express="0" InEnable="1" OutEnable="1" Port="" Address="1" />
+      <Turn PassNum="38" Order="8" SN="0" IN="0" Baggage="0" Express="0" InEnable="1" OutEnable="1" Port="" Address="1" />
+      <Turn PassNum="39" Order="9" SN="0" IN="0" Baggage="0" Express="0" InEnable="1" OutEnable="1" Port="" Address="1" />
+      <Turn PassNum="40" Order="10" SN="0" IN="0" Baggage="0" Express="0" InEnable="1" OutEnable="1" Port="" Address="1" />
+      <Turn PassNum="41" Order="11" SN="0" IN="0" Baggage="0" Express="0" InEnable="1" OutEnable="1" Port="" Address="1" />
+    </Line>
+  </Group>
+  <Group Order="2" Name="Платформа №2">
+    <Line Order="1" Name="Спутник" Type="ut2000">
+      <Turn Order="0" SN="0" IN="0" />
+      <Turn PassNum="1" Order="1" SN="0" IN="0" Baggage="0" Express="0" InEnable="1" OutEnable="1" Port="" Address="1" />
+      <Turn PassNum="2" Order="2" SN="0" IN="0" Baggage="0" Express="0" InEnable="1" OutEnable="1" Port="" Address="1" />
+      <Turn PassNum="3" Order="3" SN="0" IN="0" Baggage="0" Express="0" InEnable="1" OutEnable="1" Port="" Address="1" />
+      <Turn PassNum="4" Order="4" SN="0" IN="0" Baggage="0" Express="0" InEnable="1" OutEnable="1" Port="" Address="1" />
+      <Turn PassNum="5" Order="5" SN="0" IN="0" Baggage="0" Express="0" InEnable="1" OutEnable="1" Port="" Address="1" />
+      <Turn PassNum="6" Order="6" SN="0" IN="0" Baggage="0" Express="0" InEnable="1" OutEnable="1" Port="" Address="1" />
+      <Turn PassNum="7" Order="7" SN="0" IN="0" Baggage="0" Express="0" InEnable="1" OutEnable="1" Port="" Address="1" />
+      <Turn PassNum="8" Order="8" SN="0" IN="0" Baggage="0" Express="0" InEnable="1" OutEnable="1" Port="" Address="1" />
+      <Turn PassNum="9" Order="9" SN="0" IN="0" Baggage="0" Express="0" InEnable="1" OutEnable="1" Port="" Address="1" />
+      <Turn PassNum="10" Order="10" SN="0" IN="0" Baggage="0" Express="0" InEnable="1" OutEnable="1" Port="" Address="1" />
+    </Line>
+    <Line Order="2" Name="На платформу №2А" Type="ut2000">
+      <Turn Order="0" SN="0" IN="0" />
+      <Turn PassNum="11" Order="1" SN="0" IN="0" Baggage="0" Express="0" InEnable="1" OutEnable="1" Port="" Address="1" />
+      <Turn PassNum="12" Order="2" SN="0" IN="0" Baggage="0" Express="0" InEnable="1" OutEnable="1" Port="" Address="1" />
+      <Turn PassNum="13" Order="3" SN="0" IN="0" Baggage="0" Express="0" InEnable="1" OutEnable="1" Port="" Address="1" />
+      <Turn PassNum="14" Order="4" SN="0" IN="0" Baggage="0" Express="0" InEnable="1" OutEnable="1" Port="" Address="1" />
+      <Turn PassNum="15" Order="5" SN="0" IN="0" Baggage="0" Express="0" InEnable="1" OutEnable="1" Port="" Address="1" />
+      <Turn PassNum="16" Order="6" SN="0" IN="0" Baggage="0" Express="0" InEnable="1" OutEnable="1" Port="" Address="1" />
+    </Line>
+  </Group>
+  <Group Order="3" Name="Платформа 3">
+    <Line Order="1" Name="Со стороны Москвы" Type="ut2000">
+      <Turn Order="0" SN="0" IN="0" />
+      <Turn PassNum="17" Order="1" SN="0" IN="0" Baggage="0" Express="0" InEnable="1" OutEnable="1" Port="" Address="1" />
+      <Turn PassNum="18" Order="2" SN="0" IN="0" Baggage="0" Express="0" InEnable="1" OutEnable="1" Port="" Address="1" />
+      <Turn PassNum="19" Order="3" SN="0" IN="0" Baggage="0" Express="0" InEnable="1" OutEnable="1" Port="" Address="1" />
+      <Turn PassNum="20" Order="4" SN="0" IN="0" Baggage="0" Express="0" InEnable="1" OutEnable="1" Port="" Address="1" />
+      <Turn PassNum="21" Order="5" SN="0" IN="0" Baggage="0" Express="0" InEnable="1" OutEnable="1" Port="" Address="1" />
+      <Turn PassNum="22" Order="6" SN="0" IN="0" Baggage="0" Express="0" InEnable="1" OutEnable="1" Port="" Address="1" />
+      <Turn PassNum="23" Order="7" SN="0" IN="0" Baggage="0" Express="0" InEnable="1" OutEnable="1" Port="" Address="1" />
+    </Line>
+    <Line Order="2" Name="Со стороны области" Type="ut2000">
+      <Turn Order="0" SN="0" IN="0" />
+      <Turn PassNum="24" Order="1" SN="0" IN="0" Baggage="0" Express="0" InEnable="1" OutEnable="1" Port="" Address="1" />
+      <Turn PassNum="25" Order="2" SN="0" IN="0" Baggage="0" Express="0" InEnable="1" OutEnable="1" Port="" Address="1" />
+      <Turn PassNum="26" Order="3" SN="0" IN="0" Baggage="0" Express="0" InEnable="1" OutEnable="1" Port="" Address="1" />
+      <Turn PassNum="27" Order="4" SN="0" IN="0" Baggage="0" Express="0" InEnable="1" OutEnable="1" Port="" Address="1" />
+      <Turn PassNum="28" Order="5" SN="0" IN="0" Baggage="0" Express="0" InEnable="1" OutEnable="1" Port="" Address="1" />
+      <Turn PassNum="29" Order="6" SN="0" IN="l30" Baggage="0" Express="0" InEnable="1" OutEnable="1" Port="" Address="1" />
+      <Turn PassNum="30" Order="7" SN="0" IN="r30" Baggage="0" Express="0" InEnable="1" OutEnable="1" Port="" Address="1" />
+    </Line>
+  </Group>
+</Station>
