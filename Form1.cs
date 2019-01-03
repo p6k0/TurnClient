@@ -13,7 +13,10 @@ namespace TurnClient
             InitializeComponent();
             Size = Screen.PrimaryScreen.WorkingArea.Size;
             map = new AsokupeConfig(cfg);
+
             station1.Properties = new StationProperties();
+            station1.GroupHeaderClick = GroupHeaderClick;
+
             map.DrawMap(station1, true);
             this.Activate();
         }
@@ -39,17 +42,7 @@ namespace TurnClient
                     map.SaveMap(station1, sfd.FileName);
             }
         }
-
-
-        private void StationNameTbx_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
+        
 
         private void Form1_Shown(object sender, EventArgs e)
         {
@@ -59,6 +52,17 @@ namespace TurnClient
         private void button2_Click_1(object sender, EventArgs e)
         {
             map.Validate();
+        }
+
+
+        public void GroupHeaderClick(LineGroup t, MouseEventArgs e)
+        {
+
+            MessageBox.Show(e.Button.ToString());
+            if (e.Button == MouseButtons.Left)
+            {
+                MessageBox.Show(t.Properties.Name);
+            }
         }
     }
 }

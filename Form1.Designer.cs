@@ -79,7 +79,6 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "Имя станции:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // StationNameTbx
             // 
@@ -87,7 +86,6 @@
             this.StationNameTbx.Name = "StationNameTbx";
             this.StationNameTbx.Size = new System.Drawing.Size(144, 20);
             this.StationNameTbx.TabIndex = 4;
-            this.StationNameTbx.TextChanged += new System.EventHandler(this.StationNameTbx_TextChanged);
             // 
             // StationETbx
             // 
