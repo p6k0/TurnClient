@@ -33,7 +33,7 @@ namespace TurnClient
 
         private void button2_Click(object sender, System.EventArgs e)
         {
-            prop.Number = (int)passNum.Value;
+            prop.Number = (byte)passNum.Value;
             prop.Wire.Address = (byte)address.Value;
             prop.Wire.Port = comboBox1.SelectedIndex == -1? string.Empty: comboBox1.SelectedItem.ToString();
 

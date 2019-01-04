@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Station Name="ПУШКИНО" E="2000035" Ver="1.0.0.1" LastModify="1546471760">
+<Station Name="ПУШКИНО" E="2000035" Ver="1.0.0.1" LastModify="1546640436">
   <Group Order="1" Name="Платформа №1 (в область)">
-    <Line Order="1" Name="Павильон" Type="ut2000">
+    <Line Order="1" Name="Павильон" Type="ut2012">
       <Turn Order="0" SN="0" IN="0" />
       <Turn PassNum="31" Order="1" SN="0" IN="0" Baggage="0" Express="0" InEnable="1" OutEnable="1" Port="" Address="1" />
       <Turn PassNum="31" Order="2" SN="0" IN="0" Baggage="0" Express="0" InEnable="1" OutEnable="1" Port="" Address="1" />

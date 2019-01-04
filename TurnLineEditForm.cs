@@ -18,6 +18,7 @@ namespace TurnClient
         {
             this.Properties = Properties;
             InitializeComponent();
+            Text += "(Порядковый номер: " + Properties.Order + ")";
             comboBox1.Items.AddRange(Turnstile.ModelName);
             comboBox1.SelectedItem = Turnstile.ModelName[(byte)Properties.TurnstileModel];
             textBox1.Text = Properties.Name;

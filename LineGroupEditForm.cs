@@ -1,8 +1,6 @@
 ﻿using Microsoft.VisualBasic;
 using System;
 using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using TurnCtrl;
 
@@ -10,132 +8,154 @@ namespace TurnClient
 {
     public partial class LineGroupEditForm : Form
     {
-        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
-        private static extern IntPtr CreateRoundRectRgn
-        (
-            int nLeftRect,     // x-coordinate of upper-left corner
-            int nTopRect,      // y-coordinate of upper-left corner
-            int nRightRect,    // x-coordinate of lower-right corner
-            int nBottomRect,   // y-coordinate of lower-right corner
-            int nWidthEllipse, // height of ellipse
-            int nHeightEllipse // width of ellipse
-        );
 
-        public readonly LineGroup group;
-        public LineGroupEditForm(LineGroup group)
-        {
-            this.group = group;
-            InitializeComponent();
-            this.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, 100, 100, 100, 100));
-            //Верхний сектор
-            using (GraphicsPath g = new GraphicsPath())
-            {
-                g.AddLine(100, 0, 0, 0);
-                g.AddArc(40, 40, 20, 20, 225, 90);
-                MoveTopBtn.Region = new Region(g);
-            }
-            //нижний сектор
-            using (GraphicsPath g = new GraphicsPath())
-            {
-                g.AddLine(0, 50, 100, 50);
-                g.AddArc(40, -10, 20, 20, 45, 90);
-                MoveBottomBtn.Region = new Region(g);
-            }
-
-            //левый сектор
-            using (GraphicsPath g = new GraphicsPath())
-            {
-                g.AddLine(0, 0, 0, 100);
-                g.AddArc(40, 40, 20, 20, 135, 90);
-                DeleteButton.Region = new Region(g);
-            }
-            using (GraphicsPath g = new GraphicsPath())
-            {
-                g.AddLine(50, 100, 50, 0);
-                g.AddArc(-10, 40, 20, 20, 315, 90);
-                EditButton.Region = new Region(g);
-            }
-
-            Left = Cursor.Position.X - 50;
-            Top = Cursor.Position.Y - 50;
-        }
-
+        private object target;
         public LineGroupEditForm()
         {
             InitializeComponent();
-            this.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, 200, 200, 200, 200));
-
-            //Верхний сектор
-            using (GraphicsPath g = new GraphicsPath())
-            {
-                g.AddLine(200, 0, 0, 0);
-                g.AddArc(80, 80, 40, 40, 225, 90);
-                MoveTopBtn.Region = new Region(g);
-            }
-            //нижний сектор
-            using (GraphicsPath g = new GraphicsPath())
-            {
-                g.AddLine(0, 100, 200, 100);
-                g.AddArc(80, -20, 40, 40, 45, 90);
-                MoveBottomBtn.Region = new Region(g);
-            }
-
-            //левый сектор
-            using (GraphicsPath g = new GraphicsPath())
-            {
-                g.AddLine(0, 0, 0, 200);
-                g.AddArc(80, 80, 40, 40, 135, 90);
-                DeleteButton.Region = new Region(g);
-            }
-            using (GraphicsPath g = new GraphicsPath())
-            {
-                g.AddLine(100, 200, 100, 0);
-                g.AddArc(-20, 80, 40, 40, 315, 90);
-                EditButton.Region = new Region(g);
-            }
+            Height = 24;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        public void SetTarget(object target)
         {
-            group.Properties.Name = Interaction.InputBox("Введи новое имя группы", "Новое имя группы", group.Properties.Name);
-            group.Upd();
+            this.target = target;
+            if (target is Turnstile)
+            {
+                MoveBottomBtn.Enabled = false;
+                MoveTopBtn.Enabled = false;
+                AddBtn.Enabled = false;
+                Size = MinimumSize;
+            }
+            else
+            {
+                MoveBottomBtn.Enabled = true;
+                MoveTopBtn.Enabled = true;
+                AddBtn.Enabled = true;
+                Size = MaximumSize;
+            }
+            SetBackColor();
+            SetLocation();
+            Show();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void SetBackColor()
         {
-            group.MoveTop();
+            Control ctrl = (Control)target;
+            if (ctrl is LineGroup)
+                BackColor = ctrl.BackColor;
+            else if (ctrl is TurnLine)
+                BackColor = Color.FromArgb(0x26, 0xa6, 0x9a);
+            else
+                BackColor = ctrl.BackColor;
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void SetLocation()
         {
-            group.MoveBottom();
+            Control ctrl = (Control)target;
+            Point p = ctrl.PointToScreen(new Point(0, 0));
+            if (ctrl is LineGroup)
+                p.Offset((ctrl.Width - Width) / 2, 25);
+            else if (ctrl is TurnLine)
+                p.Offset((ctrl.Width - Width) / 2, 20);
+            else
+                p.Offset((ctrl.Width - Width) / 2, ctrl.Height - Height-20);
+            Location = p;
+        }
+
+
+        private void Edit_Click(object sender, EventArgs e)
+        {
+            Deactivate -= LineGroupEditForm_Deactivate;
+            Visible = false;
+            if (target is LineGroup)
+            {
+                string tmp = Interaction.InputBox("Новое имя группы", "Редактирование", ((LineGroup)target).Properties.Name);
+                if (tmp != string.Empty)
+                {
+                    ((LineGroup)target).Properties.Name = tmp;
+                }
+            }
+            else if (target is TurnLine)
+            {
+                using (TurnLineEditForm f = new TurnLineEditForm(((TurnLine)target).Properties))
+                {
+                    if (f.ShowDialog() == DialogResult.OK)
+                    {
+                        ((TurnLine)target).Compose();
+                    }
+                }
+            }
+            else
+            {
+                using (PassEditForm f = new PassEditForm(((Turnstile)target).Properties))
+                {
+                    if (f.ShowDialog() == DialogResult.OK)
+                        ((Turnstile)target).Compose();
+                }
+            }
+            Visible = true;
+            Deactivate += LineGroupEditForm_Deactivate;
+        }
+
+        private void MoveTop_Click(object sender, EventArgs e)
+        {
+            if (target is LineGroup)
+                ((LineGroup)target).MoveTop();
+            else
+                ((TurnLine)target).MoveTop();
+            SetLocation();
+        }
+
+        private void MoveBottom_Click(object sender, EventArgs e)
+        {
+            if (target is LineGroup)
+                ((LineGroup)target).MoveBottom();
+            else
+                ((TurnLine)target).MoveBottom();
+            SetLocation();
         }
 
         private void DeleteButton_Click(object sender, EventArgs e)
         {
+            Deactivate -= LineGroupEditForm_Deactivate;
+            Visible = false;
+            Control ctrl = (Control)target;
             if (MessageBox.Show(
                 this,
-                "Удаление группы линеек",
-                "Вы действительно хотите удалить эту группу линеек и все ее содержимое?",
+                "Вы действительно хотите удалить данный элемент?\r\n Тут кнопки \"Вернуть\" нет",
+                "Удаление элемента",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question
             ) == DialogResult.Yes)
             {
-                Station st = ((Station)group.Parent);
-                group.Dispose();
-                st.Compose();
-                Close();
+                Control p = ctrl.Parent;
+                ctrl.Dispose();
+                if (p is TurnLine)
+                    ((TurnLine)p).Compose();
+                else if (p is Station)
+                    ((Station)p).Compose();
+                else if (p is LineGroup)
+                    ((LineGroup)p).Compose();
+                Hide();
+                return;
             }
+            Visible = true;
+            Deactivate += LineGroupEditForm_Deactivate;
         }
 
-        private void LineGroupEditForm_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
 
         private void LineGroupEditForm_Deactivate(object sender, EventArgs e)
         {
-            this.Close();
+            Hide();
+        }
+
+        private void AddBtn_Click(object sender, EventArgs e)
+        {
+            if (target is LineGroup)
+                ((LineGroup)target).createLine();
+            else
+                ((TurnLine)target).CreatePass();
+            SetLocation();
         }
     }
 }

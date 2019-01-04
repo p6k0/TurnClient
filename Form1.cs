@@ -7,6 +7,8 @@ namespace TurnClient
 {
     public partial class Form1 : Form
     {
+        LineGroupEditForm f = new LineGroupEditForm();
+
         AsokupeConfig map;
         public Form1(XmlDocument cfg)
         {
@@ -59,33 +61,18 @@ namespace TurnClient
 
         public void GroupHeaderClick(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left)
-            {
-                new LineGroupEditForm((LineGroup)sender).Show();
-            }
+            f.SetTarget(sender);
         }
 
 
         public void LineHeaderClick(object sender, MouseEventArgs e)
         {
-
-
-            MessageBox.Show(e.Button.ToString());
-            if (e.Button == MouseButtons.Left)
-            {
-                MessageBox.Show(((TurnLine)sender).Properties.Name);
-            }
+            f.SetTarget(sender);
         }
 
         public void TunstileClick(object sender, MouseEventArgs e)
         {
-
-
-            MessageBox.Show(e.Button.ToString());
-            if (e.Button == MouseButtons.Left)
-            {
-                MessageBox.Show(((Turnstile)sender).Properties.Number.ToString());
-            }
+            f.SetTarget(sender);
         }
     }
 }
