@@ -73,30 +73,30 @@
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(379, 2);
+            this.label1.Location = new System.Drawing.Point(369, 2);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(100, 23);
+            this.label1.Size = new System.Drawing.Size(120, 23);
             this.label1.TabIndex = 3;
             this.label1.Text = "Имя станции:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // StationNameTbx
             // 
-            this.StationNameTbx.Location = new System.Drawing.Point(485, 4);
+            this.StationNameTbx.Location = new System.Drawing.Point(495, 4);
             this.StationNameTbx.Name = "StationNameTbx";
-            this.StationNameTbx.Size = new System.Drawing.Size(144, 20);
+            this.StationNameTbx.Size = new System.Drawing.Size(144, 22);
             this.StationNameTbx.TabIndex = 4;
             // 
             // StationETbx
             // 
-            this.StationETbx.Location = new System.Drawing.Point(741, 4);
+            this.StationETbx.Location = new System.Drawing.Point(751, 4);
             this.StationETbx.Name = "StationETbx";
-            this.StationETbx.Size = new System.Drawing.Size(144, 20);
+            this.StationETbx.Size = new System.Drawing.Size(144, 22);
             this.StationETbx.TabIndex = 6;
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(635, 2);
+            this.label2.Location = new System.Drawing.Point(645, 2);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(100, 23);
             this.label2.TabIndex = 5;
@@ -108,9 +108,9 @@
             this.button3.FlatAppearance.BorderSize = 0;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button3.Location = new System.Drawing.Point(891, 1);
+            this.button3.Location = new System.Drawing.Point(901, 1);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(86, 25);
+            this.button3.Size = new System.Drawing.Size(108, 25);
             this.button3.TabIndex = 7;
             this.button3.Text = "Сохранить";
             this.button3.UseVisualStyleBackColor = true;
@@ -122,6 +122,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.station1.AutoScroll = true;
+            this.station1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.station1.Location = new System.Drawing.Point(0, 30);
             this.station1.Margin = new System.Windows.Forms.Padding(0);
             this.station1.Name = "station1";
@@ -135,7 +136,7 @@
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button2.Location = new System.Drawing.Point(248, 0);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(141, 27);
+            this.button2.Size = new System.Drawing.Size(115, 27);
             this.button2.TabIndex = 8;
             this.button2.Text = "Проверить";
             this.button2.UseVisualStyleBackColor = true;

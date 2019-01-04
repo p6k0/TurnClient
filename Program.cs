@@ -14,7 +14,11 @@ namespace TurnClient
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            /*
+            Application.Run(new LineGroupEditForm());
+            Application.Exit();*/
             XmlDocument cfg = new XmlDocument();
+
             using (StartupForm f = new StartupForm())
             {
                 switch (f.ShowDialog())

@@ -16,9 +16,11 @@ namespace TurnClient
 
             station1.Properties = new StationProperties();
             station1.GroupHeaderClick = GroupHeaderClick;
+            station1.LineHeaderClick = LineHeaderClick;
+            station1.PassNumClick = TunstileClick;
 
             map.DrawMap(station1, true);
-            this.Activate();
+            Activate();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -42,11 +44,11 @@ namespace TurnClient
                     map.SaveMap(station1, sfd.FileName);
             }
         }
-        
+
 
         private void Form1_Shown(object sender, EventArgs e)
         {
-            this.Activate();
+            Activate();
         }
 
         private void button2_Click_1(object sender, EventArgs e)
@@ -55,13 +57,34 @@ namespace TurnClient
         }
 
 
-        public void GroupHeaderClick(LineGroup t, MouseEventArgs e)
+        public void GroupHeaderClick(object sender, MouseEventArgs e)
         {
+            if (e.Button == MouseButtons.Left)
+            {
+                new LineGroupEditForm((LineGroup)sender).Show();
+            }
+        }
+
+
+        public void LineHeaderClick(object sender, MouseEventArgs e)
+        {
+
 
             MessageBox.Show(e.Button.ToString());
             if (e.Button == MouseButtons.Left)
             {
-                MessageBox.Show(t.Properties.Name);
+                MessageBox.Show(((TurnLine)sender).Properties.Name);
+            }
+        }
+
+        public void TunstileClick(object sender, MouseEventArgs e)
+        {
+
+
+            MessageBox.Show(e.Button.ToString());
+            if (e.Button == MouseButtons.Left)
+            {
+                MessageBox.Show(((Turnstile)sender).Properties.Number.ToString());
             }
         }
     }
