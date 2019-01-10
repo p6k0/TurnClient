@@ -21,7 +21,7 @@ namespace TurnClient
             station1.LineHeaderClick = LineHeaderClick;
             station1.PassNumClick = TunstileClick;
 
-            map.DrawMap(station1, true);
+            map.DrawMap(station1);
             Activate();
         }
 

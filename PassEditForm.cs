@@ -6,8 +6,8 @@ namespace TurnClient
 {
     public partial class PassEditForm : Form
     {
-        public PassProperies prop;
-        public PassEditForm(PassProperies prop)
+        public PassProperties prop;
+        public PassEditForm(PassProperties prop)
         {
             this.prop = prop;
             InitializeComponent();
@@ -24,11 +24,11 @@ namespace TurnClient
             inEnable.Checked = prop.InEnable;
             outEnable.Checked = prop.OutEnable;
 
-            leftInvNum.Text = prop.LeftRack.InventoryNum;
-            leftSNum.Value = prop.LeftRack.SerialNum;
+            leftInvNum.Text = prop.OutRack.InventoryNum;
+            leftSNum.Value = prop.OutRack.SerialNum;
 
-            rightInvNum.Text = prop.RightRack.InventoryNum;
-            rightSNum.Value = prop.RightRack.SerialNum;
+            rightInvNum.Text = prop.InRack.InventoryNum;
+            rightSNum.Value = prop.InRack.SerialNum;
         }
 
         private void button2_Click(object sender, System.EventArgs e)
@@ -43,11 +43,11 @@ namespace TurnClient
             prop.Baggage = baggage.Checked;
             prop.Express = express.Checked;
 
-            prop.LeftRack.InventoryNum = leftInvNum.Text;
-            prop.LeftRack.SerialNum = (ulong)leftSNum.Value;
+            prop.OutRack.InventoryNum = leftInvNum.Text;
+            prop.OutRack.SerialNum = (ulong)leftSNum.Value;
 
-            prop.RightRack.InventoryNum = rightInvNum.Text;
-            prop.RightRack.SerialNum = (ulong)rightSNum.Value;
+            prop.InRack.InventoryNum = rightInvNum.Text;
+            prop.InRack.SerialNum = (ulong)rightSNum.Value;
 
 
 

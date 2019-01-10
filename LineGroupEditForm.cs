@@ -58,7 +58,7 @@ namespace TurnClient
             else if (ctrl is TurnLine)
                 p.Offset((ctrl.Width - Width) / 2, 20);
             else
-                p.Offset((ctrl.Width - Width) / 2, ctrl.Height - Height-20);
+                p.Offset((ctrl.Width - Width) / 2, ctrl.Height - Height - 30);
             Location = p;
         }
 
@@ -79,10 +79,9 @@ namespace TurnClient
             {
                 using (TurnLineEditForm f = new TurnLineEditForm(((TurnLine)target).Properties))
                 {
-                    if (f.ShowDialog() == DialogResult.OK)
-                    {
-                        ((TurnLine)target).Compose();
-                    }
+                    f.ShowDialog();
+                    /*if ( f.ShowDialog() == DialogResult.OK)*/
+                    //((TurnLine)target).Compose();
                 }
             }
             else
@@ -90,8 +89,9 @@ namespace TurnClient
                 using (PassEditForm f = new PassEditForm(((Turnstile)target).Properties))
                 {
                     if (f.ShowDialog() == DialogResult.OK)
-                        ((Turnstile)target).Compose();
+                        ((Turnstile)target).DrawIcons();
                 }
+
             }
             Visible = true;
             Deactivate += LineGroupEditForm_Deactivate;
@@ -130,9 +130,9 @@ namespace TurnClient
             {
                 Control p = ctrl.Parent;
                 ctrl.Dispose();
-                if (p is TurnLine)
+                /*if (p is TurnLine)
                     ((TurnLine)p).Compose();
-                else if (p is Station)
+                else*/ if (p is Station)
                     ((Station)p).Compose();
                 else if (p is LineGroup)
                     ((LineGroup)p).Compose();
